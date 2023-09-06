@@ -1,0 +1,328 @@
+#include <stdio.h>
+
+void list(int sayi)
+{
+    if(sayi==0)
+    {
+        printf("%d",sayi);
+    }
+    else
+    {
+        printf("%d\n",sayi);
+        list(sayi-1);
+    }
+}
+//Bir n sayısından 0'a kadar olan sayıları bastıran rekürsif fonksiyon
+int main()
+{
+    int n;
+   printf("lutfen bir adet sayi giriniz:\n");
+   scanf("%d",&n);
+   list (n);
+    return 0;
+}
+
+
+**************************************************************************
+
+
+#include <stdio.h>
+
+void fun(int sayi)
+{
+
+if (sayi<0)
+{
+    printf("pozitif bir sayi giriniz.\n");
+    return;
+}
+if(sayi==0)
+{
+    printf("0");
+    return;
+}
+fun(sayi-1);
+printf("%d",sayi);
+//0 dan n sayisina kadar olan sayilari bastiran rekürsif fonksiyon
+}
+int main()
+{
+    int n;
+    printf("lutfen bir sayi giriniz:\n");
+    scanf("%d",&n);
+
+    printf("0 ile %d arasindaki sayilar:\n",n);
+    fun(n);
+
+
+
+    return 0;
+}
+*********************************************************************
+
+
+#include <stdio.h>
+
+int Toplam2(int n) {
+    if (n <= 0) {
+        return 0;
+    } else {
+        return n + Toplam2(n - 1);
+    }
+}
+//girilen sayının 0 dan itibaren degerlerinin girilmesi ve toplanmasi(negatif sayilar eklenerek degistirildi)
+int main() {
+    int sayi;
+
+    printf("Bir sayi giriniz: ");
+    scanf("%d", &sayi);
+
+    int toplam;
+    if (sayi >= 0) {
+        toplam = Toplam2(sayi);
+    } else {
+        toplam = Toplam2(-sayi);
+        toplam = -toplam;
+    }
+
+    printf("0'dan %d'e kadar olan sayilarin toplami: %d\n", sayi, toplam);
+
+    return 0;
+}
+***************************************************************************************
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int carpim(int sayi1, int sayi2) {
+    int sonuc;
+    if (sayi2 == 0) {
+        return 0;
+    } else if (sayi2 > 0) {
+        sonuc = sayi1 + carpim(sayi1, sayi2 - 1);
+    } else {
+        sonuc = -carpim(sayi1, -sayi2);
+    }
+    return sonuc;
+}
+//iki sayinin operator kullanılmadan carpilmasi(negatif sayilar eklendi)
+int main() {
+    int a, b;
+    printf("Lutfen 2 adet sayi giriniz\n");
+    scanf("%d%d", &a, &b);
+    printf("%d*%d = %d\n", a, b, carpim(a, b));
+    return 0;
+}
+******************************************************************************************
+
+
+#include <stdio.h>
+
+double uss(int taban, int us) {
+    if (us == 0) {
+        return 1;
+    }
+	else if (us<0)
+	{
+		return 1/uss(taban,-us);
+	 } 
+	
+	else {
+        return taban * uss(taban, us - 1);
+    }
+}
+//uslu sayi hesaplayan program(3^-4=1/81 gibi islemler eklendi)
+int main() {
+    double taban;
+	int us;
+    printf("taban sayisini girin: ");
+    scanf("%lf", &taban);
+
+    printf("ussu girin: ");
+    scanf("%d", &us);
+
+    double sonuc = uss(taban, us);
+    printf("%lf^%d = %lf\n", taban, us, sonuc);
+
+    return 0;
+}
+***************************************************************************
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int fakt(int sayi)
+{
+    int sonuc;
+    if(sayi!=0)
+    {
+        sonuc=sayi*fakt(sayi-1);
+    }
+    else
+    {
+        sonuc=1;
+    }
+    return sonuc;
+}
+
+//faktoriyel hesaplama
+int main()
+{
+	int n;
+	printf("lutfen bir deger giriniz:");
+	scanf("%d",&n);
+	printf("faktoriyel=%d",fakt(n));
+
+	return 0;
+}
+****************************************************************
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void teksayi(int basla,int bitis)
+{
+    if(basla<=bitis)
+    {
+        printf("%d\n",basla);
+        teksayi(basla+2,bitis);
+    }
+
+}
+//girilen n sayisina kadar olan tek sayilari yazdiran kod
+int main()
+{
+	int n,tk;
+	printf("lutfen bir sayi giriniz:");
+	scanf("%d",&n);
+	if(n%2==1)
+    {
+        tk=n;
+    }
+	else
+    {
+        tk=n-1;
+    }
+    teksayi(1,tk);
+
+	return 0;
+}
+****************************************************************
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void teksayi(int basla,int bitis)
+{
+    if(basla<=bitis)
+    {
+        printf("%d\n",basla);
+        teksayi(basla+2,bitis);
+    }
+
+}
+
+//girilen n sayisina kadar olan çift sayilari yazdiran kod
+int main()
+{
+	int n,tk;
+	printf("lutfen bir sayi giriniz:");
+	scanf("%d",&n);
+	if(n%2==0)
+    {
+        tk=n;
+    }
+	else
+    {
+        tk=n-1;
+    }
+    teksayi(0,tk);
+
+	return 0;
+}
+******************************************************************
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int asal(int sayi,int i)
+{
+    if(i==1)
+    {
+        return 1;
+    }
+    else if(sayi%i==0)
+    {
+        return 0;
+    }
+    else
+    {
+        asal(sayi,i-1);
+    }
+}
+//girilen n sayisina kadar olan asal sayilari yazdiran kod 
+int main()
+{
+    int n,i,kontrol;
+    printf("Lutfen bir sayi giriniz:");
+    scanf("%d",&n);
+    for(i=2;i<=n;i++)
+    {
+        kontrol=asal(i,i/2);
+        if(kontrol==1)
+        {
+            printf("%d\n",i);
+        }
+
+    }
+    return 0;
+}
+*******************************************************
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int fibonacci(int n)
+{
+    if(n==0)
+    {
+        return 0;
+    }
+     else if(n==1)
+    {
+        return 1;
+    }
+    else
+    {
+        return(fibonacci(n-2)+fibonacci(n-1));
+    }
+
+}
+//fibonacci kodu
+int main()
+{
+int sayi,i;
+   printf("Kac adet sayi uretilecek:");
+   scanf("%d",&sayi);
+   for(i=0;i<sayi;i++)
+   {
+       printf("%d\n",fibonacci(i));
+   }
+
+    return 0;
+}
+****************************************************************
+
+
+
+
+
+
+
+
+
